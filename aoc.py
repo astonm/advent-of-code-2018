@@ -24,7 +24,7 @@ class for_day:
             return
         answer = f"{answer}"
 
-        print(f"day {self.day}, level {level}. submit answer {answer}? [y/N]", end=" ")
+        print(f"day {self.day}, level {level}. submit answer {answer}? [Y/n]", end=" ")
         reply = input().lower() or "y"
 
         if reply != "y":
