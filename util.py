@@ -345,6 +345,9 @@ class CircularDoublyLinkedList:
         node.prev = target
         target.next.prev = node
         target.next = node
+        if target is self.tail:
+            self.tail = node
+        return node
 
     def remove_elem(self, node):
         node.prev.next = node.next
