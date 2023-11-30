@@ -386,6 +386,19 @@ def prod(l):
     return reduce(lambda x, y: x * y, l)
 
 
+def sign(n):
+    if n == 0:
+        return 0
+    elif n < 0:
+        return -1
+    else:
+        return 1
+
+
+def manhattan(p, q):
+    return abs(p[0] - q[0]) + abs(p[1] - q[1])
+
+
 def running_sum(l):
     current = 0
     for x in l:
