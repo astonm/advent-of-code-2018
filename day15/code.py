@@ -95,23 +95,32 @@ def move(u, open_in_range, g):
 
 
 def shortest_path_to_any(start, goals, g):
-    q = [[start]]
+    q = [start]
     seen = set()
+    backlinks = {}
     while q:
-        curr_path = q.pop(0)
-        p = curr_path[-1]
+        p = q.pop(0)
 
         seen.add(p)
-
         if p in goals:
+            curr_path = get_path(p, backlinks)
             return curr_path[1:]
 
         for dx, dy in [(0, -1), (-1, 0), (1, 0), (0, 1)]:
             np = p[0] + dx, p[1] + dy
             if g.get(*np) == "." and np not in seen:
-                q.append(curr_path + [np])
+                backlinks[np] = p
+                q.append(np)
 
     return None
+
+
+def get_path(p, backlinks):
+    out = [p]
+    while p in backlinks:
+        p = backlinks[p]
+        out.append(p)
+    return out[::-1]
 
 
 def attack(u, g, units):
