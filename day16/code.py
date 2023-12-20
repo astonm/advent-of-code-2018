@@ -1,4 +1,5 @@
 from util import *
+from device import *
 import aoc
 
 submit = aoc.for_day(16)
@@ -79,9 +80,6 @@ def part2(input):
     return submit.part(2, reg[0])
 
 
-OPS = "addr addi mulr muli banr bani borr bori setr seti gtir gtri gtrr eqir eqri eqrr".split()
-
-
 def get_matching_opcodes(inst, reg, exp):
     out = []
     opcode, a, b, c = [int(x) for x in inst.split()]
@@ -91,47 +89,6 @@ def get_matching_opcodes(inst, reg, exp):
             out.append(op)
 
     return out
-
-
-def apply_op(op, a, b, c, reg):
-    reg = reg[:]
-
-    if op == "addr":
-        reg[c] = reg[a] + reg[b]
-    elif op == "addi":
-        reg[c] = reg[a] + b
-    elif op == "mulr":
-        reg[c] = reg[a] * reg[b]
-    elif op == "muli":
-        reg[c] = reg[a] * b
-    elif op == "banr":
-        reg[c] = reg[a] & reg[b]
-    elif op == "bani":
-        reg[c] = reg[a] & b
-    elif op == "borr":
-        reg[c] = reg[a] | reg[b]
-    elif op == "bori":
-        reg[c] = reg[a] | b
-    elif op == "setr":
-        reg[c] = reg[a]
-    elif op == "seti":
-        reg[c] = a
-    elif op == "gtir":
-        reg[c] = int(a > reg[b])
-    elif op == "gtri":
-        reg[c] = int(reg[a] > b)
-    elif op == "gtrr":
-        reg[c] = int(reg[a] > reg[b])
-    elif op == "eqir":
-        reg[c] = int(a == reg[b])
-    elif op == "eqri":
-        reg[c] = int(reg[a] == b)
-    elif op == "eqrr":
-        reg[c] = int(reg[a] == reg[b])
-    else:
-        raise ValueError("bad op", op)
-
-    return reg
 
 
 if __name__ == "__main__":
