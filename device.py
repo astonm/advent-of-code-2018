@@ -57,7 +57,7 @@ def apply_op(op, a, b, c, reg):
     return reg
 
 
-def run_program(program, regs, ip=0):
+def run_program(program, regs, ip=0, debug=False):
     defs, insts = program
 
     ip_reg = None
@@ -75,7 +75,9 @@ def run_program(program, regs, ip=0):
         regs = apply_op(op, a, b, c, regs)
 
         next_ip = (regs[ip_reg] if ip_reg is not None else ip) + 1
-        # print(f"{ip=} {before} {op} {a} {b} {c} {regs} {next_ip=}")
+
+        if debug:
+            print(f"{ip=} {before} {op} {a} {b} {c} {regs} {next_ip=}")
 
         if ip_reg is not None:
             ip = regs[ip_reg]

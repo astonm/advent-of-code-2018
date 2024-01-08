@@ -5,4 +5,4 @@ INPUT=${3:-input}
 OTHER=${@:4}
 export PYTHONPATH="."
 export PIPENV_VERBOSITY=-1
-pipenv run python "$DAY/code.py" "$PART" "$DAY/$INPUT.txt" $OTHER
+pipenv run python -u "$DAY/code.py" "$PART" "$DAY/$INPUT.txt" $OTHER
