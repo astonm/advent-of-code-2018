@@ -19,6 +19,7 @@ import re
 from queue import *
 import json
 from tqdm import tqdm
+from enum import Enum, IntEnum
 
 
 def p(*a, **k):
